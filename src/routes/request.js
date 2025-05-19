@@ -96,6 +96,7 @@ requestRouter.post(
       res.json({ message: "Connection request " + status, data });
     } catch (err) {
       res.status(400).send("ERROR: " + err.message);
+      
     }
   }
 );

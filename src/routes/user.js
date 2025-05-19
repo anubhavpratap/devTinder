@@ -7,6 +7,9 @@ const User = require("../models/user");
 
 const USER_SAFE_DATA = "firstName lastName photoUrl age gender about skills";
 
+
+
+
 // Get all the pending connection request for the loggedIn user
 userRouter.get("/user/requests/received", userAuth, async (req, res) => {
   try {
@@ -52,6 +55,16 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
     res.json({ data });
   } catch (err) {
     res.status(400).send({ message: err.message });
+  }
+});
+userRouter.get("/user/:id",userAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id.trim()).select("firstName lastName");
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.json({ firstName: user.firstName, lastName: user.lastName });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
