@@ -57,6 +57,7 @@ const userSchema = new mongoose.Schema(
     },
     membershipType: {
       type: String,
+      default: "Free"
     },
     photoUrl: {
       type: String,
