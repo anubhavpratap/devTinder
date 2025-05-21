@@ -5,6 +5,8 @@ const cookieParser = require("cookie-parser");
 //const User = require('./models/user');
 const cors = require("cors");
 const http = require("http");
+require('dotenv').config();
+
 
 app.use(cors({
     origin: "http://localhost:5173",
@@ -38,7 +40,7 @@ connectDB().then(()=>{
     console.error("Database cannot be connected...")
 });
 
-server.listen(7777,()=>{
+server.listen(process.env.PORT,()=>{
     console.log("server is successfully listening...")
 });
 
